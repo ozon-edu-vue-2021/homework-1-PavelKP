@@ -73,6 +73,11 @@
         })
     </script>
     <script>
+				/* 
+					Добавил очистку очереди
+					Добавил удаление дублированных колбэков в очереди
+					Добавил асинхронную перерисовку
+				*/
         const counterEl = document.querySelector('.js-app .counter');
         const buttonElMinus = document.querySelector('.js-app .minus');
         const buttonElPlus = document.querySelector('.js-app .plus');
@@ -112,9 +117,8 @@
 					id && clearTimeout(id);
 					id = setTimeout(() => {
 						const uniqueQueue = new Set(queue);
-						debugger
 						uniqueQueue.forEach(fn => {
-							console.log('fn')
+							console.log('fn');
 							fn();
 						});
 						queue = [actions.initial];
