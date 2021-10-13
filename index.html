@@ -2,155 +2,155 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Reactivity</title>
-    <link rel="stylesheet" href="./style/index.css">
-    <link rel="icon" href="./images/vue-logo.svg">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>The Reactivity</title>
+	<link rel="stylesheet" href="./style/index.css">
+	<link rel="icon" href="./images/vue-logo.svg">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 
 <body>
-    <section class="app vue-app">
-        <h1>VUE</h1>
-        <h2>How much will?</h2>
-        <p>{{counter}} + {{step}}</p>
-        <p><strong>Result: {{sum}}</strong></p>
-        <div class="math">
-            Counter:
-            <button class="button minus" v-on:click="decrementCounterHandler">-1</button>
-            <button class="button plus" v-on:click="incrementCounterHandler">+1</button>
-        </div>
-        <div class="math">
-            Step:
-            <button class="button minus" v-on:click="decrementStep">-2</button>
-            <button class="button plus" v-on:click="incrementStep">+2</button>
-        </div>
-    </section>
-    <hr>
-    <section class="app js-app">
-        <h1>JS</h1>
-        <h2>How much will!</h2>
-        <p><span class="counter"></span> + <span class="step"></span></p>
-        <p><strong>Result: <span class="sum"></span></strong></p>
-        <div class="math">
-            Counter:
-            <button class="button minus">-1</button>
-            <button class="button plus">+1</button>
-        </div>
-        <div class="math steps">
-            Step:
-            <button class="button minus">-2</button>
-            <button class="button plus">+2</button>
-        </div>
-    </section>
-    <script>
-        const $vue = new Vue({
-            el: '.vue-app',
-            data: {
-                counter: 1,
-                step: 2
-            },
-            methods: {
-                incrementCounterHandler() {
-									this.counter += 1;
-								},
-                decrementCounterHandler() {
-									this.counter -= 1;
-								},
-								incrementStep() {
-									this.step += 2;
-								},
-								decrementStep() {
-									this.step -= 2;
-								}
-            },
-            computed: {
-                sum() {
-									return this.counter + this.step;
-								}
-            }
-        })
-    </script>
-    <script>
-				/* 
-					Добавил очистку очереди
-					Добавил удаление дублированных колбэков в очереди
-					Добавил асинхронную перерисовку
-				*/
-        const counterEl = document.querySelector('.js-app .counter');
-        const buttonElMinus = document.querySelector('.js-app .minus');
-        const buttonElPlus = document.querySelector('.js-app .plus');
-				const buttonElStepPlus = document.querySelector('.js-app .steps .plus');
-				const buttonElStepMinus = document.querySelector('.js-app .steps .minus');
-        const sumEl = document.querySelector('.js-app .sum');
-        const stepEl = document.querySelector('.js-app .step');
-
-        const data = {
-            counter: 1,
-            step: 2
-        };
-
-				const actions = {
-					counter: function refreshCounter() {
-						counterEl.textContent = data.counter;
-					},
-					step: function refreshStep() {
-						stepEl.textContent = data.step;
-					},
-					initial: function getSum() {
-						sumEl.textContent = data.counter + data.step;
-					}
+	<section class="app vue-app">
+		<h1>VUE</h1>
+		<h2>How much will?</h2>
+		<p>{{counter}} + {{step}}</p>
+		<p><strong>Result: {{sum}}</strong></p>
+		<div class="math">
+			Counter:
+			<button class="button minus" v-on:click="decrementCounterHandler">-1</button>
+			<button class="button plus" v-on:click="incrementCounterHandler">+1</button>
+		</div>
+		<div class="math">
+			Step:
+			<button class="button minus" v-on:click="decrementStep">-2</button>
+			<button class="button plus" v-on:click="incrementStep">+2</button>
+		</div>
+	</section>
+	<hr>
+	<section class="app js-app">
+		<h1>JS</h1>
+		<h2>How much will!</h2>
+		<p><span class="counter"></span> + <span class="step"></span></p>
+		<p><strong>Result: <span class="sum"></span></strong></p>
+		<div class="math">
+			Counter:
+			<button class="button minus">-1</button>
+			<button class="button plus">+1</button>
+		</div>
+		<div class="math steps">
+			Step:
+			<button class="button minus">-2</button>
+			<button class="button plus">+2</button>
+		</div>
+	</section>
+	<script>
+		const $vue = new Vue({
+			el: '.vue-app',
+			data: {
+				counter: 1,
+				step: 2
+			},
+			methods: {
+				incrementCounterHandler() {
+					this.counter += 1;
+				},
+				decrementCounterHandler() {
+					this.counter -= 1;
+				},
+				incrementStep() {
+					this.step += 2;
+				},
+				decrementStep() {
+					this.step -= 2;
 				}
-
-				const methods = {
-					incrementCounterHandler: () => data.counter += 1,
-					decrementCounterHandler: () => data.counter -= 1,
-					incrementStep: () => data.step += 2,
-					decrementStep: () => data.step -= 2,
+			},
+			computed: {
+				sum() {
+					return this.counter + this.step;
 				}
+			}
+		})
+	</script>
+	<script>
+		/* 
+			Добавил очистку очереди
+			Добавил удаление дублированных колбэков в очереди
+			Добавил асинхронную перерисовку
+		*/
+		const counterEl = document.querySelector('.js-app .counter');
+		const buttonElMinus = document.querySelector('.js-app .minus');
+		const buttonElPlus = document.querySelector('.js-app .plus');
+		const buttonElStepPlus = document.querySelector('.js-app .steps .plus');
+		const buttonElStepMinus = document.querySelector('.js-app .steps .minus');
+		const sumEl = document.querySelector('.js-app .sum');
+		const stepEl = document.querySelector('.js-app .step');
 
-        let queue = [actions.initial];
-				let id;
+		const data = {
+			counter: 1,
+			step: 2
+		};
 
-				const observer = function () {
-					id && clearTimeout(id);
-					id = setTimeout(() => {
-						const uniqueQueue = new Set(queue);
-						uniqueQueue.forEach(fn => {
-							console.log('fn');
-							fn();
-						});
-						queue = [actions.initial];
-					}, 0);
+		const actions = {
+			counter: function refreshCounter() {
+				counterEl.textContent = data.counter;
+			},
+			step: function refreshStep() {
+				stepEl.textContent = data.step;
+			},
+			initial: function getSum() {
+				sumEl.textContent = data.counter + data.step;
+			}
+		}
+
+		const methods = {
+			incrementCounterHandler: () => data.counter += 1,
+			decrementCounterHandler: () => data.counter -= 1,
+			incrementStep: () => data.step += 2,
+			decrementStep: () => data.step -= 2,
+		}
+
+		let queue = [actions.initial];
+		let id;
+
+		const observer = function () {
+			id && clearTimeout(id);
+			id = setTimeout(() => {
+				const uniqueQueue = new Set(queue);
+				uniqueQueue.forEach(fn => {
+					console.log('fn');
+					fn();
+				});
+				queue = [actions.initial];
+			}, 0);
+		}
+
+		Object.keys(data).forEach(key => {
+			let value = data[key]; // data.counter, data.counter1, data.counter2
+			Object.defineProperty(data, key, {
+				get: function () {
+					console.log('get');
+					queue.push(actions[key]);
+					return value;
+				},
+				set: function (newValue) {
+					console.log('set');
+					value = newValue;
+					observer();
 				}
+			});
+		});
 
-        Object.keys(data).forEach(key => {
-            let value = data[key]; // data.counter, data.counter1, data.counter2
-            Object.defineProperty(data, key, {
-                get: function () {
-                    console.log('get');
-                    queue.push(actions[key]);
-                    return value;
-                },
-                set: function (newValue) {
-                    console.log('set');
-                    value = newValue;
-										observer();
-                }
-            });
-        });
+		counterEl.textContent = data.counter;
+		stepEl.textContent = data.step;
+		actions.initial();
 
-        counterEl.textContent = data.counter;
-        stepEl.textContent = data.step;
-        actions.initial();
+		buttonElMinus.addEventListener('click', methods.decrementCounterHandler);
+		buttonElPlus.addEventListener('click', methods.incrementCounterHandler);
+		buttonElStepPlus.addEventListener('click', methods.incrementStep);
+		buttonElStepMinus.addEventListener('click', methods.decrementStep);
 
-        buttonElMinus.addEventListener('click', methods.decrementCounterHandler);
-        buttonElPlus.addEventListener('click', methods.incrementCounterHandler);
-				buttonElStepPlus.addEventListener('click', methods.incrementStep);
-				buttonElStepMinus.addEventListener('click', methods.decrementStep);
-
-    </script>
+	</script>
 </body>
 
 </html>
